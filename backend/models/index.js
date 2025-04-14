@@ -3,58 +3,55 @@
 const fs = require('fs');
 const path = require('path');
 const { Sequelize, DataTypes } = require('sequelize');
-require('dotenv').config(); // Load environment variables
+require('dotenv').config();
 
 const basename = path.basename(__filename);
-const User = require("./User.js");
-const env = process.env.NODE_ENV || 'development';
 const db = {};
 
-// Konfigurasi koneksi ke PostgreSQL dari .env
+// Inisialisasi koneksi ke database
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
-  process.env.DB_PASSWORD,
+  process.env.DB_PASS,
   {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: 'postgres',
-    logging: false, // Matikan logging query jika tidak diperlukan
+    logging: false,
+    dialectOptions: {
+      ssl: false, // Matikan SSL
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
   }
 );
 
-// Baca semua file model dalam folder ini
+// Baca semua file model di folder ini (kecuali index.js)
 fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
+  .filter(file => (
+    file.indexOf('.') !== 0 &&
+    file !== basename &&
+    file.slice(-3) === '.js'
+  ))
   .forEach(file => {
-    const modelImport = require(path.join(__dirname, file));
-    const model = modelImport.default ? modelImport.default : modelImport;
-
-    // Pastikan model memiliki fungsi init sebelum dipanggil
-    if (typeof model.init === 'function') {
-      model.init(sequelize, DataTypes);
-    }
-
+    const modelFactory = require(path.join(__dirname, file));
+    const model = modelFactory(sequelize, DataTypes);
     db[model.name] = model;
   });
 
-// Jalankan associate jika ada
+// Jalankan associate kalau ada relasi
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
-// Export objek db
+// Export semua
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-module.exports = { User };
