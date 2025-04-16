@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "profile": "Profile",
+    "services": "Services",
+    "contact": "Contact",
+    "language": {
+      "id": "ID",
+      "en": "EN",
+      "jp": "JP"
+    }
+  },
+  "homepage": {
+    "heading": "SUICIDE PREVENT",
+    "tagline": "Hold on, for life holds many stories yet to be written...",
+    "section1": "Suicide often appears as a way out of unbearable pain, but in truth, it is an escape from the untapped potential of life. When the soul is imprisoned in darkness, where pain and despair seep into every corner of the mind, the world feels narrow and silent, like a story that has stopped midway. In such moments, we may feel that no one can save us, that there is no reason left to endure. Yet, in truth, this pain is merely one chapter in an endless story. To end life is to close the book before the story reaches its climax, for every chapter, even the darkest, is part of a journey that will lead us toward enlightenment and rebirth. Life, though full of challenges, is a chance to rewrite our tale, to find strength hidden in our vulnerability. There is beauty in continuing a story that seems to have ended, in realizing that we can still change the course of our lives, choosing to rise even when the path is steep. The world is never devoid of love that is pure, from those who await us to continue the story that was once interrupted. Suicide erases the possibility of discovering a more beautiful ending, one that will emerge with the passage of time. Our life is not solely ours, but part of a grander narrative—a tale that involves the world, the people who love us, and a destiny holding a mystery filled with hope...",
+    "section2": "This website is crafted to offer a space for each individual to find hope, to share their stories, and to rediscover strength along their journey. We believe that every story has the power to inspire and transform, and we wish to be part of that journey, helping each person realize that their story is still unfolding, and that an abundance of beauty awaits on every new page.",
+    "section3": "Even in our darkest pages, hope is written between the lines...",
+    "cta": "Your story is not finished. Take the next step."
+  },
+  "footer": {
+    "continueStory": "Your story is not over. Keep going.",
+    "eachStep": "Every step you take is a new chapter waiting to unfold.",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "allRightsReserved": "All rights reserved."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "profile": "Profil",
+    "services": "Layanan",
+    "contact": "Kontak",
+    "language": {
+      "id": "ID",
+      "en": "EN",
+      "jp": "JP"
+    }
+  },
+  "homepage": {
+    "heading": "SUICIDE PREVENT",
+    "tagline": "Tetap bertahan, karena hidup punya banyak cerita yang belum kamu tulis...",
+    "section1": "Bunuh diri sering kali muncul sebagai jalan keluar dari derita yang begitu menekan, namun sejatinya ia adalah pelarian dari potensi hidup yang masih terpendam. Ketika jiwa terperangkap dalam kegelapan, di mana rasa sakit dan keputusasaan merasuki setiap inci pikiran, dunia terasa begitu sempit dan sunyi, seperti halnya sebuah cerita yang terhenti di tengah jalan. Dalam momen-momen itu, kita mungkin merasa tak ada lagi yang dapat menolong, tak ada lagi alasan untuk bertahan. Namun kenyataannya, rasa sakit itu hanyalah satu bab dalam kisah panjang yang belum selesai. Mengakhiri hidup berarti menutup buku sebelum cerita kita mencapai klimaksnya, padahal setiap bab, meskipun kelam, adalah bagian dari perjalanan yang akan membawa kita menuju pencerahan dan kebangkitan. Hidup, meskipun penuh dengan tantangan, adalah peluang untuk menulis kembali kisah kita, menemukan kekuatan yang tersembunyi dalam setiap kerentanannya. Ada keindahan dalam melanjutkan cerita yang seolah-olah terhenti, dalam menyadari bahwa kita masih bisa menulis ulang alur hidup kita, memilih untuk bangkit meskipun jalan terasa terjal. Dunia ini tak pernah sepi dari kasih sayang yang tulus, dari orang-orang yang menunggu kita untuk kembali melanjutkan cerita yang sempat terputus. Bunuh diri menghapus kemungkinan untuk menemukan akhir yang lebih indah, yang justru akan datang seiring berjalannya waktu. Kehidupan kita bukan hanya milik kita sendiri, tetapi bagian dari kisah yang lebih besar—sebuah cerita yang melibatkan dunia, orang-orang yang mencintai kita, dan takdir yang menyimpan misteri penuh harapan...",
+    "section2": "Website ini dibuat untuk memberikan ruang bagi setiap individu untuk menemukan harapan, menyuarakan cerita mereka, dan menemukan kekuatan dalam perjalanan hidup mereka. Kami percaya bahwa setiap cerita memiliki potensi untuk menginspirasi dan membawa perubahan, dan kami ingin menjadi bagian dari perjalanan itu, untuk membantu setiap individu menyadari bahwa kisah mereka masih terus berkembang, dan ada begitu banyak keindahan yang menanti di setiap halaman baru.",
+    "section3": "Bahkan dalam halaman tergelap kita, harapan tertulis di antara setiap garis...",
+    "cta": "Cerita kamu belum berakhir. Ambil langkah berikutnya."
+  },
+  "footer": {
+    "continueStory": "Cerita Anda belum selesai. Teruskanlah.",
+    "eachStep": "Setiap langkah yang Anda ambil adalah bab baru yang menunggu untuk terungkap.",
+    "aboutUs": "Tentang Kami",
+    "contact": "Kontak",
+    "privacyPolicy": "Kebijakan Privasi",
+    "allRightsReserved": "Semua hak dilindungi."
+  }
+}

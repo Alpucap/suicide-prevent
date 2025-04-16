@@ -1,10 +1,14 @@
 import React from "react";
-import DataDisplay from "./components/DataDisplay";
+import HomePage from "./pages/HomePage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
     return (
         <div>
-            <DataDisplay />
+            <Navbar />
+            <HomePage />
+            <Footer />
         </div>
     );
 }
