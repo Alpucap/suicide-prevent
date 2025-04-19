@@ -1,10 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import profilImage from '../assets/images/cthpprofil.jpg';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState('home');
+    const [scrolled, setScrolled] = useState(false);
     const { t, i18n } = useTranslation();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+            
+            const sections = ['home', 'about', 'services', 'emergency'];
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        setActiveLink(section);
+                        break;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -14,80 +37,113 @@ const Navbar = () => {
         i18n.changeLanguage(lng);
     };
 
+    const smoothScroll = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            setActiveLink(id);
+            setIsOpen(false);
+        }
+    };
+
     return (
-        <nav className="bg-white/20 backdrop-blur-md shadow-md fixed w-full z-50 h-16">
+        <nav className={`fixed w-full z-50 h-16 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white/90 backdrop-blur-md'}`}>
             <div className="container mx-auto relative flex items-center justify-between h-full px-4">
-                <div className="flex items-center gap-4">
-                <button
-                    className="md:hidden block text-text"
-                    onClick={toggleMenu}
-                >
-                    <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6h16M4 12h16M4 18h16"
-                    />
-                    </svg>
-                </button>
-                <div className="text-xl font-semibold text-text md:block">
+                {/* Logo - Separate from Home link */}
+                <div className="text-xl font-semibold text-text">
                     SuicidePrevent
                 </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="md:hidden block text-text focus:outline-none"
+                    onClick={toggleMenu}
+                    aria-label="Toggle menu"
+                >
+                    <div className="space-y-1.5 w-6">
+                        <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                        <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                        <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                    </div>
+                </button>
+
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center space-x-8">
+                    {['home', 'about', 'services', 'emergency'].map((link) => (
+                        <a 
+                            key={link}
+                            href={`#${link}`} 
+                            className={`text-text transition-colors duration-300 ${activeLink === link ? 'text-secondary font-medium' : 'hover:text-secondary'}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                smoothScroll(link);
+                            }}
+                        >
+                            {t(`navbar.${link}`)}
+                        </a>
+                    ))}
                 </div>
 
-                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-6">
-                <a href="#home" className="text-text hover:text-secondary">{t("navbar.home")}</a>
-                <a href="#about" className="text-text hover:text-secondary">{t("navbar.about")}</a>
-                <a href="#services" className="text-text hover:text-secondary">{t("navbar.services")}</a>
-                <a href="#contact" className="text-text hover:text-secondary">{t("navbar.contact")}</a>
-                </div>
-
-                <div className="hidden md:flex items-center gap-4">
-                <div className="flex gap-2 items-center text-sm text-text">
-                    <button onClick={() => changeLanguage("id")} className="hover:text-secondary">
-                    {t('navbar.language.id')}
-                    </button>
-                    <span>|</span>
-                    <button onClick={() => changeLanguage("en")} className="hover:text-secondary">
-                    {t('navbar.language.en')}
-                    </button>
-                </div>
-                <a href="#profile">
-                    <img
-                    src={profilImage}
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full object-cover"
-                    />
-                </a>
+                {/* Language and Profile */}
+                <div className="hidden md:flex items-center gap-6">
+                    <div className="flex gap-2 items-center text-sm text-text">
+                        {['id', 'en'].map((lang, index) => (
+                            <React.Fragment key={lang}>
+                                <button 
+                                    onClick={() => changeLanguage(lang)} 
+                                    className={`transition-colors duration-300 ${i18n.language === lang ? 'text-secondary font-medium' : 'hover:text-secondary'}`}
+                                >
+                                    {t(`navbar.language.${lang}`)}
+                                </button>
+                                {index === 0 && <span className="text-gray-400">|</span>}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                    <a 
+                        href="#profile"
+                        className="transition-transform duration-300 hover:scale-105"
+                    >
+                        <img
+                            src={profilImage}
+                            alt="Profile"
+                            className="w-9 h-9 rounded-full object-cover border-2 border-transparent transition-colors duration-300 hover:border-secondary"
+                        />
+                    </a>
                 </div>
             </div>
 
-            {/* Dropdown menu - Mobile Only */}
-            {isOpen && (
-                <div className="md:hidden bg-white/80 backdrop-blur p-4 space-y-4 absolute top-16 w-full shadow-md">
-                    <a href="#home" className="block text-text hover:text-secondary">{t("navbar.home")}</a>
-                    <a href="#about" className="block text-text hover:text-secondary">{t("navbar.about")}</a>
-                    <a href="#services" className="block text-text hover:text-secondary">{t("navbar.services")}</a>
-                    <a href="#contact" className="block text-text hover:text-secondary">{t("navbar.contact")}</a>
-                    <a href="#services" className="block text-text hover:text-secondary">{t("navbar.profile")}</a>
-                    <div className="flex gap-4 items-center pt-4 text-text">
-                        <button onClick={() => changeLanguage("id")} className="text-sm hover:text-secondary">
-                        {t('navbar.language.id')}
-                        </button>
-                        <span>|</span>
-                        <button onClick={() => changeLanguage("en")} className="text-sm hover:text-secondary">
-                        {t('navbar.language.en')}
-                        </button>
-                    </div>
+            {/* Mobile Menu */}
+            <div className={`md:hidden bg-white/95 backdrop-blur-lg p-6 space-y-5 absolute top-16 w-full shadow-md transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}>
+                {['home', 'about', 'services', 'emergency'].map((link) => (
+                    <a 
+                        key={link}
+                        href={`#${link}`} 
+                        className={`block text-lg transition-colors duration-300 ${activeLink === link ? 'text-secondary font-medium' : 'hover:text-secondary'}`}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            smoothScroll(link);
+                        }}
+                    >
+                        {t(`navbar.${link}`)}
+                    </a>
+                ))}
+                <div className="flex gap-3 items-center pt-4 text-text">
+                    {['id', 'en'].map((lang, index) => (
+                        <React.Fragment key={lang}>
+                            <button 
+                                onClick={() => changeLanguage(lang)} 
+                                className={`text-sm transition-colors duration-300 ${i18n.language === lang ? 'text-secondary font-medium' : 'hover:text-secondary'}`}
+                            >
+                                {t(`navbar.language.${lang}`)}
+                            </button>
+                            {index === 0 && <span className="text-gray-400">|</span>}
+                        </React.Fragment>
+                    ))}
                 </div>
-            )}
+            </div>
         </nav>   
     );
 };

@@ -4,7 +4,7 @@
     "about": "About",
     "profile": "Profile",
     "services": "Services",
-    "contact": "Contact",
+    "emergency": "Emergency",
     "language": {
       "id": "ID",
       "en": "EN"
@@ -13,10 +13,26 @@
   "homepage": {
     "heading": "SUICIDE PREVENT",
     "tagline": "Hold on, for life holds many stories yet to be written...",
-    "section1": "Suicide often appears as a way out of unbearable pain, but in truth, it is an escape from the untapped potential of life. When the soul is imprisoned in darkness, where pain and despair seep into every corner of the mind, the world feels narrow and silent, like a story that has stopped midway. In such moments, we may feel that no one can save us, that there is no reason left to endure. Yet, in truth, this pain is merely one chapter in an endless story. To end life is to close the book before the story reaches its climax, for every chapter, even the darkest, is part of a journey that will lead us toward enlightenment and rebirth. Life, though full of challenges, is a chance to rewrite our tale, to find strength hidden in our vulnerability. There is beauty in continuing a story that seems to have ended, in realizing that we can still change the course of our lives, choosing to rise even when the path is steep. The world is never devoid of love that is pure, from those who await us to continue the story that was once interrupted. Suicide erases the possibility of discovering a more beautiful ending, one that will emerge with the passage of time. Our life is not solely ours, but part of a grander narrative—a tale that involves the world, the people who love us, and a destiny holding a mystery filled with hope...",
-    "section2": "This website is crafted to offer a space for each individual to find hope, to share their stories, and to rediscover strength along their journey. We believe that every story has the power to inspire and transform, and we wish to be part of that journey, helping each person realize that their story is still unfolding, and that an abundance of beauty awaits on every new page.",
-    "section3": "Even in our darkest pages, hope is written between the lines...",
-    "cta": "Your story is not finished. Take the next step."
+    "description": "Suicide often appears as a way out of unbearable pain, but in truth, it is an escape from the untapped potential of life. When the soul is imprisoned in darkness, where pain and despair seep into every corner of the mind, the world feels narrow and silent, like a story that has stopped midway. In such moments, we may feel that no one can save us, that there is no reason left to endure. Yet, in truth, this pain is merely one chapter in an endless story. To end life is to close the book before the story reaches its climax, for every chapter, even the darkest, is part of a journey that will lead us toward enlightenment and rebirth. Life, though full of challenges, is a chance to rewrite our tale, to find strength hidden in our vulnerability. There is beauty in continuing a story that seems to have ended, in realizing that we can still change the course of our lives, choosing to rise even when the path is steep. The world is never devoid of love that is pure, from those who await us to continue the story that was once interrupted. Suicide erases the possibility of discovering a more beautiful ending, one that will emerge with the passage of time. Our life is not solely ours, but part of a grander narrative—a tale that involves the world, the people who love us, and a destiny holding a mystery filled with hope...",
+    "aboutus": "This website is crafted to offer a space for each individual to find hope, to share their stories, and to rediscover strength along their journey. We believe that every story has the power to inspire and transform, and we wish to be part of that journey, helping each person realize that their story is still unfolding, and that an abundance of beauty awaits on every new page.",
+    "quotes": "Even in our darkest pages, hope is written between the lines...",
+    "cta": "Your story is not finished. Take the next step.",
+    "community": "Join Community",
+    "learnmore": "Learn More",
+    "newsSection": {
+      "readMore": "Read More"
+    },
+    "emergencies": {
+      "needHelp": "Need Immediate Medical Help?",
+      "description": "If you or someone close to you is experiencing a medical emergency, contact immediately:",
+      "callHotline": "Ministry of Health Hotline",
+      "visitKemkes": "Official Ministry of Health Website",
+      "note": "24/7 service available. National emergency number 119 can be reached from anywhere in Indonesia.",
+      "callHelp": "Emergency Assistance",
+      "desktopMessage": "For immediate assistance, please call 119 from a mobile phone. Alternatively, you can visit the Ministry of Health website for more information.",
+      "close": "Close",
+      "visitWebsite": "Visit Health Website"
+    }
   },
   "footer": {
     "continueStory": "Your story is not over. Keep going.",
@@ -24,6 +40,28 @@
     "aboutUs": "About Us",
     "contact": "Contact",
     "privacyPolicy": "Privacy Policy",
-    "allRightsReserved": "All rights reserved."
+    "allRightsReserved": "All rights reserved.",
+    "banner": {
+      "text1": "Your Life Matters.",
+      "text2": "You Are Not Alone.",
+      "text3": "Your Story Isn't Over Yet.",
+      "text4": "Someone Cares. Always.",
+      "text5": "Hold On. Better Days Are Coming.",
+      "text6": "You Are Stronger Than Your Darkest Days.",
+      "text7": "Please Stay. The World Needs You.",
+      "text8": "It's Okay To Ask For Help.",
+      "text9": "You Matter More Than You Know.",
+      "text10": "This Pain Is Temporary. Your Life Is Not.",
+      "text11": "You Are Worthy Of Love And Healing.",
+      "text12": "Every Breath Is A Chance To Begin Again.",
+      "text13": "Don't Give Up. Your Light Is Needed.",
+      "text14": "Your Existence Is A Gift.",
+      "text15": "Let's Talk Before You Give Up.",
+      "text16": "You've Made It Through 100% Of Your Bad Days.",
+      "text17": "Stay. Because Someone Would Miss You Terribly.",
+      "text18": "You Deserve Help, Hope, And Healing.",
+      "text19": "You Are More Than Your Thoughts.",
+      "text20": "Stay Alive For The Moments You Haven't Lived Yet."
+    }
   }
 }

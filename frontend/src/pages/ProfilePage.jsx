@@ -9,16 +9,14 @@ const ProfilePage = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    profilePicture: null, // For new file upload
-    profilePictureUrl: "" // For existing URL
+    profilePicture: null, 
+    profilePictureUrl: "" 
   });
   const [previewImage, setPreviewImage] = useState(null);
 
-  // Fetch user data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Replace '1' with actual user ID (from auth context or localStorage)
         const response = await api.get("/users/1"); 
         setUser(response.data);
         setFormData({
@@ -53,7 +51,6 @@ const ProfilePage = () => {
         profilePicture: file
       });
       
-      // Create preview
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
@@ -67,7 +64,6 @@ const ProfilePage = () => {
     try {
       let updatedUser = { username: formData.username, email: formData.email };
       
-      // If new photo was uploaded
       if (formData.profilePicture) {
         const formDataToSend = new FormData();
         formDataToSend.append('profilePicture', formData.profilePicture);
@@ -81,7 +77,6 @@ const ProfilePage = () => {
         });
         updatedUser = response.data;
       } else {
-        // If only text data was changed
         const response = await api.put(`/users/${user.id}`, updatedUser);
         updatedUser = response.data;
       }

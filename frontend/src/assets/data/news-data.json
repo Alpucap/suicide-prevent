@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "translationKey": "homepage.news1",
+        "date": "2023-05-15",
+        "image": "cthpprofil.jpg" 
+    },
+    {
+        "id": 2,
+        "translationKey": "homepage.news2",
+        "date": "2023-05-10",
+        "image": "cthpprofil.jpg"
+    },
+    {
+        "id": 3,
+        "translationKey": "homepage.news3",
+        "date": "2023-05-05",
+        "image": "cthpprofil.jpg"
+    }
+]
