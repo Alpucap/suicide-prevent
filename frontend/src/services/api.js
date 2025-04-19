@@ -6,6 +6,7 @@ const api = axios.create({
     baseURL: API_BASE_URL,
 });
 
+export default api;
 // Contoh penggunaan nih service w kasih di components
 
 // //Contoh fungsi GET

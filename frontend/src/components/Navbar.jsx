@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import profilImage from '../assets/images/cthpprofil.jpg';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,59 +15,80 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-white/20 backdrop-blur-md shadow-md fixed w-full z-50 h-16 flex items-center">
-            <div className="container mx-auto flex justify-between items-center px-4">
-
-                {/* Hamburger menu (mobile size) */}
-                <button className="text-text md:hidden block" onClick={toggleMenu}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+        <nav className="bg-white/20 backdrop-blur-md shadow-md fixed w-full z-50 h-16">
+            <div className="container mx-auto relative flex items-center justify-between h-full px-4">
+                <div className="flex items-center gap-4">
+                <button
+                    className="md:hidden block text-text"
+                    onClick={toggleMenu}
+                >
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16M4 18h16"
+                    />
                     </svg>
                 </button>
-
-                {/* Main nav */}
-                <div className="md:flex md:space-x-8 hidden w-full justify-center">
-                    <a href="#home" className="relative text-text hover:text-secondary transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-secondary after:transition-all after:duration-300">
-                        {t('navbar.home')}
-                    </a>
-                    <a href="#about" className="relative text-text hover:text-secondary transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-secondary after:transition-all after:duration-300">
-                        {t('navbar.about')}
-                    </a>
-                    <a href="#profile" className="relative text-text hover:text-secondary transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-secondary after:transition-all after:duration-300 mx-4">
-                        {t('navbar.profile')}
-                    </a>
-                    <a href="#services" className="relative text-text hover:text-secondary transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-secondary after:transition-all after:duration-300">
-                        {t('navbar.services')}
-                    </a>
-                    <a href="#contact" className="relative text-text hover:text-secondary transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-secondary after:transition-all after:duration-300">
-                        {t('navbar.contact')}
-                    </a>
+                <div className="text-xl font-semibold text-text md:block">
+                    SuicidePrevent
+                </div>
                 </div>
 
-                {/* Language switcher */}
-                <div className="hidden md:flex gap-2 items-center">
-                    <button onClick={() => changeLanguage("id")} className="text-text hover:text-secondary text-sm">{t('navbar.language.id')}</button>
-                    <span className="text-text text-sm">|</span>
-                    <button onClick={() => changeLanguage("en")} className="text-text hover:text-secondary text-sm">{t('navbar.language.en')}</button>
-                    <span className="text-text text-sm">|</span>
-                    <button onClick={() => changeLanguage("jp")} className="text-text hover:text-secondary text-sm">{t('navbar.language.jp')}</button>
+                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-6">
+                <a href="#home" className="text-text hover:text-secondary">{t("navbar.home")}</a>
+                <a href="#about" className="text-text hover:text-secondary">{t("navbar.about")}</a>
+                <a href="#services" className="text-text hover:text-secondary">{t("navbar.services")}</a>
+                <a href="#contact" className="text-text hover:text-secondary">{t("navbar.contact")}</a>
                 </div>
-            </div>
 
-            {/* Mobile dropdown */}
-            <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-secondary text-text p-4 space-y-4 absolute top-16 w-full`}>
-                <a href="#home" className="block hover:text-white">{t('navbar.home')}</a>
-                <a href="#about" className="block hover:text-white">{t('navbar.about')}</a>
-                <a href="#services" className="block hover:text-white">{t('navbar.services')}</a>
-                <a href="#profile" className="block hover:text-white">{t('navbar.profile')}</a>
-                <a href="#contact" className="block hover:text-white">{t('navbar.contact')}</a>
-                <div className="flex gap-4 pt-2">
-                    <button onClick={() => changeLanguage("id")} className="text-sm">{t('navbar.language.id')}</button>
-                    <button onClick={() => changeLanguage("en")} className="text-sm">{t('navbar.language.en')}</button>
-                    <button onClick={() => changeLanguage("jp")} className="text-sm">{t('navbar.language.jp')}</button>
+                <div className="hidden md:flex items-center gap-4">
+                <div className="flex gap-2 items-center text-sm text-text">
+                    <button onClick={() => changeLanguage("id")} className="hover:text-secondary">
+                    {t('navbar.language.id')}
+                    </button>
+                    <span>|</span>
+                    <button onClick={() => changeLanguage("en")} className="hover:text-secondary">
+                    {t('navbar.language.en')}
+                    </button>
+                </div>
+                <a href="#profile">
+                    <img
+                    src={profilImage}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full object-cover"
+                    />
+                </a>
                 </div>
             </div>
-        </nav>
+
+            {/* Dropdown menu - Mobile Only */}
+            {isOpen && (
+                <div className="md:hidden bg-white/80 backdrop-blur p-4 space-y-4 absolute top-16 w-full shadow-md">
+                    <a href="#home" className="block text-text hover:text-secondary">{t("navbar.home")}</a>
+                    <a href="#about" className="block text-text hover:text-secondary">{t("navbar.about")}</a>
+                    <a href="#services" className="block text-text hover:text-secondary">{t("navbar.services")}</a>
+                    <a href="#contact" className="block text-text hover:text-secondary">{t("navbar.contact")}</a>
+                    <a href="#services" className="block text-text hover:text-secondary">{t("navbar.profile")}</a>
+                    <div className="flex gap-4 items-center pt-4 text-text">
+                        <button onClick={() => changeLanguage("id")} className="text-sm hover:text-secondary">
+                        {t('navbar.language.id')}
+                        </button>
+                        <span>|</span>
+                        <button onClick={() => changeLanguage("en")} className="text-sm hover:text-secondary">
+                        {t('navbar.language.en')}
+                        </button>
+                    </div>
+                </div>
+            )}
+        </nav>   
     );
 };
 
