@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
+import { useNavigate } from "react-router-dom";
+import authService from "../services/authService"; 
 
 const RegisterPage = () => {
   const { t } = useTranslation();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: ""
+  });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [recaptchaChecked, setRecaptchaChecked] = useState(false);
@@ -38,11 +43,20 @@ const RegisterPage = () => {
     return null;
   };
 
-  const handleRegister = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
 
-    if (!username || !email || !password || !confirmPassword) {
+    // Validasi input
+    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
       setError(t("register.required"));
       return;
     }
@@ -52,22 +66,40 @@ const RegisterPage = () => {
       return;
     }
 
-    const passwordError = validatePassword(password);
+    const passwordError = validatePassword(formData.password);
     if (passwordError) {
       setError(passwordError);
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       setError(t("register.passwordMismatch"));
       return;
     }
 
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      // Panggil authService.register
+      const result = await authService.register({
+        name: formData.username,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password
+      });
+
+      if (result.success) {
+        alert(t("register.success"));
+        navigate("/login"); 
+      } else {
+        setError(result.message || t("register.error"));
+      }
+    } catch (err) {
+      setError(t("register.error"));
+      console.error("Registration error:", err);
+    } finally {
       setLoading(false);
-      alert("Pendaftaran berhasil!");
-    }, 1500);
+    }
   };
 
   return (
@@ -95,8 +127,9 @@ const RegisterPage = () => {
             </label>
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
               placeholder={t("register.usernamePlaceholder")}
               className="w-full px-4 py-2 rounded-xl border dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
@@ -108,8 +141,9 @@ const RegisterPage = () => {
             </label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder={t("register.emailPlaceholder")}
               className="w-full px-4 py-2 rounded-xl border dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
@@ -121,8 +155,9 @@ const RegisterPage = () => {
             </label>
             <input
               type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
               placeholder={t("register.phonePlaceholder")}
               className="w-full px-4 py-2 rounded-xl border dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
@@ -134,8 +169,9 @@ const RegisterPage = () => {
             </label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder={t("register.passwordPlaceholder")}
               className="w-full px-4 py-2 rounded-xl border dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
@@ -147,8 +183,9 @@ const RegisterPage = () => {
             </label>
             <input
               type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
               placeholder={t("register.confirmPasswordPlaceholder")}
               className="w-full px-4 py-2 rounded-xl border dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
@@ -172,7 +209,7 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-xl"
+            className={`w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-xl ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {loading ? t("register.processing") : t("register.registerButton")}
           </button>
